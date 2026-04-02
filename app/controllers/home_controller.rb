@@ -12,4 +12,14 @@ class HomeController < ActionController::Base
     Post.create(title: params[:title], body: params[:body], author: params[:author])
     redirect_to "/" # Kayıttan sonra ana sayfaya dön
   end
+
+  def destroy
+  @post = Post.find(params[:id]) # Silinecek yazıyı kimliğinden bul
+  @post.destroy                  # Veritabanından sil
+  redirect_to "/"                # Ana sayfaya geri dön
+  end
+
+  def show
+  @post = Post.find(params[:id]) # Sadece o ID'li yazıyı bul
+  end
 end

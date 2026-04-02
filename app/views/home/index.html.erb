@@ -6,13 +6,18 @@
 
 <div class="posts-container">
   <% @posts.each do |post| %>
-    <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: #f9f9f9;">
+    <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9;">
+      
       <h2><a href="/post/<%= post.id %>" style="color: #2980b9; text-decoration: none;"><%= post.title %></a></h2>
+      
       <p><%= post.body %></p>
       <hr>
       <p><small><strong>Yazar:</strong> <%= post.author %></small></p>
 
-      <%= button_to "Bu Yazıyı Sil", "/delete/#{post.id}", method: :delete, form: { data: { confirm: "Emin misin?" } }, style: "background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px;" %>
+      <a href="/edit/<%= post.id %>" style="display: inline-block; color: #3498db; text-decoration: none; margin-right: 15px;">Düzenle</a>
+
+      <%= button_to "Bu Yazıyı Sil", "/delete/#{post.id}", method: :delete, data: { confirm: "Emin misin?" }, style: "background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;" %>
+      
     </div>
   <% end %>
 </div>

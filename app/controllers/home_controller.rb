@@ -1,25 +1,51 @@
 class HomeController < ActionController::Base
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @posts = Post.all
   end
 
-  # Form sayfasını açar
-  def new
+  def show
   end
 
-  # Formdan gelen veriyi veritabanına kaydeder
+  def new
+    @post = Post.new
+  end
+
   def create
-    Post.create(title: params[:title], body: params[:body], author: params[:author])
-    redirect_to "/" # Kayıttan sonra ana sayfaya dön
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to "/"
+    else
+      # Hata varsa 'new.html.erb' sayfasını tekrar yükle
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to "/"
+    else
+      # Hata varsa 'edit.html.erb' sayfasını tekrar yükle
+      render :edit
+    end
   end
 
   def destroy
-  @post = Post.find(params[:id]) # Silinecek yazıyı kimliğinden bul
-  @post.destroy                  # Veritabanından sil
-  redirect_to "/"                # Ana sayfaya geri dön
+    @post.destroy
+    redirect_to "/"
   end
 
-  def show
-  @post = Post.find(params[:id]) # Sadece o ID'li yazıyı bul
+  private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body, :author)
   end
 end

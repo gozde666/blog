@@ -1,23 +1,40 @@
-<h1>Blog Yazılarım</h1>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h1 class="fw-bold text-neon-purple display-4">Blog Yazılarım</h1>
+    <%= link_to "+ Yeni Yazı Ekle", "/new", class: "btn btn-neon-purple px-4 py-2 rounded-pill shadow" %>
+  </div>
 
-<a href="/new" style="display: inline-block; background-color: #27ae60; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-bottom: 20px;">
-  + Yeni Yazı Ekle
-</a>
+  <div class="posts-container">
+    <% @posts.each do |post| %>
+      <div class="card purple-card mb-4">
+        <div class="card-body p-4 text-white">
+          
+          <h2 class="card-title">
+            <a href="/post/<%= post.id %>" class="text-white text-decoration-none fw-bold">
+              <%= post.title %>
+            </a>
+          </h2>
+          
+          <p class="opacity-75"><%= post.body %></p>
+          <hr class="border-light opacity-25">
 
-<div class="posts-container">
-  <% @posts.each do |post| %>
-    <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9;">
-      
-      <h2><a href="/post/<%= post.id %>" style="color: #2980b9; text-decoration: none;"><%= post.title %></a></h2>
-      
-      <p><%= post.body %></p>
-      <hr>
-      <p><small><strong>Yazar:</strong> <%= post.author %></small></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="mb-0 small opacity-75">
+              <strong>Yazar:</strong> <span class="text-info"><%= post.author %></span>
+            </p>
+            
+            <div class="d-flex align-items-center gap-3">
+              <a href="/edit/<%= post.id %>" class="text-info text-decoration-none small fw-bold">Düzenle</a>
 
-      <a href="/edit/<%= post.id %>" style="display: inline-block; color: #3498db; text-decoration: none; margin-right: 15px;">Düzenle</a>
+              <%= button_to "Bu Yazıyı Sil", "/delete/#{post.id}",
+                method: :delete,
+                data: { confirm: "Emin misin?" },
+                class: "btn btn-light-pink btn-sm rounded-pill px-4" %>
+            </div>
+          </div>
 
-      <%= button_to "Bu Yazıyı Sil", "/delete/#{post.id}", method: :delete, data: { confirm: "Emin misin?" }, style: "background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;" %>
-      
-    </div>
-  <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

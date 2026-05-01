@@ -39,6 +39,12 @@ class HomeController < ApplicationController
     redirect_to "/"
   end
 
+  def about
+  end
+
+  def projects
+  end
+
   private
 
   def set_post

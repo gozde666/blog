@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   # Düzenleme yolları
   get "/edit/:id", to: "home#edit"
   patch "/update/:id", to: "home#update"
+
+  # Ders notlarında istenen yeni sayfalar
+  get "about", to: "home#about"
+  get "projects", to: "home#projects"
 end

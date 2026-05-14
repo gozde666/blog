@@ -1,5 +1,3 @@
 class Post < ApplicationRecord
-  validates :title, presence: { message: "başlığı boş bırakamazsın" }
-  validates :body, presence: { message: "içeriği boş bırakamazsın" }
-  validates :author, presence: { message: "yazar adını boş bırakamazsın" }
+  has_and_belongs_to_many :categories
 end

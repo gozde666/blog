@@ -25,6 +25,11 @@
     <%= form.number_field :status, class: "form-control bg-dark text-white border-purple" %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :image, "Resim", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.file_field :image, class: "form-control bg-dark text-white border-purple" %>
+  </div>
+
   <div class="mb-4">
     <%= form.label :category_ids, "Kategoriler", class: "form-label text-neon-purple fw-bold" %>
     <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "form-select bg-dark text-white border-purple" } %>

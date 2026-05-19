@@ -1,10 +1,20 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-5">
+  <div class="d-flex align-items-center gap-4 mb-5">
+    <h1 class="fw-bold"><%= @category.name %></h1>
+    <span class="text-muted fs-5"><%= @category.name %> kategorisine ait tüm postlar</span>
+  </div>
 
-<%= render @category %>
+  <% @category.posts.each do |post| %>
+    <div class="mb-4">
+      <h4><%= link_to post.title, post_path(post), class: "text-decoration-none" %></h4>
+      <p class="text-muted"><%= truncate(post.article, length: 200) %></p>
+      <%= link_to "Devamı", post_path(post), class: "text-primary" %>
+    </div>
+    <hr>
+  <% end %>
 
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+  <div class="mt-4">
+    <%= link_to "Geri", categories_path, class: "btn btn-secondary" %>
+    <%= link_to "Düzenle", edit_category_path(@category), class: "btn btn-warning ms-2" %>
+  </div>
 </div>

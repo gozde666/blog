@@ -11,6 +11,11 @@
             <%= link_to post.title, post_path(post), class: "text-white text-decoration-none fw-bold" %>
           </h2>
           <p class="opacity-75"><%= post.article %></p>
+          <div class="mb-2">
+            <% post.categories.each do |category| %>
+              <span class="badge bg-primary"><%= category.name %></span>
+            <% end %>
+          </div>
           <hr class="border-light opacity-25">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">

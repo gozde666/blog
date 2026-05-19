@@ -1,8 +1,7 @@
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h2><%= pluralize(post.errors.count, "error") %> hata oluştu:</h2>
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,27 +10,29 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :article, style: "display: block" %>
-    <%= form.textarea :article %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
+  <div class="mb-3">
+    <%= form.label :title, "Başlık", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.text_field :title, class: "form-control bg-dark text-white border-purple", placeholder: "Yazı başlığını girin..." %>
   </div>
 
   <div class="mb-3">
-  <%= form.label :category_ids, "Kategoriler", style: "display: block" %>
-  <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "form-control" } %>
+    <%= form.label :article, "İçerik", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.textarea :article, class: "form-control bg-dark text-white border-purple", rows: 6, placeholder: "Yazı içeriğini girin..." %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.label :status, "Durum", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.number_field :status, class: "form-control bg-dark text-white border-purple" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :category_ids, "Kategoriler", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "form-select bg-dark text-white border-purple" } %>
+    <small class="text-muted">Birden fazla seçmek için Ctrl tuşuna basılı tutun</small>
+  </div>
+
+  <div class="d-flex gap-3">
+    <%= form.submit class: "btn btn-neon-purple px-4 py-2 rounded-pill" %>
+    <%= link_to "Geri Dön", posts_path, class: "btn btn-outline-light px-4 py-2 rounded-pill" %>
   </div>
 <% end %>

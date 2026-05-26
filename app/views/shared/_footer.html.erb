@@ -1,12 +1,20 @@
 <footer class="footer mt-auto py-4 border-top border-purple">
   <div class="container text-center">
     <div class="d-flex justify-content-center gap-4 mb-3">
-      <%= link_to "Anasayfa", root_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
-      <%= link_to "Hakkımda", about_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
-      <%= link_to "Projelerim", projects_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
-      <%= link_to "Kategoriler", categories_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
+      <%= link_to t(".home"), root_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
+      <%= link_to t(".about"), about_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
+      <%= link_to t(".projects"), projects_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
+      <%= link_to t(".categories"), categories_path, class: "text-white text-decoration-none opacity-75 hover-purple" %>
     </div>
     <p class="text-white-50 small mb-0">© 2026 Gözde | Tüm Hakları Saklıdır.</p>
     <div class="mt-2 mx-auto border-bottom border-purple" style="width: 50px;"></div>
+    <div class="mt-3">
+      <%= link_to url_for(locale: :tr), class: "me-2 text-decoration-none" do %>
+        <img src="https://flagcdn.com/24x18/tr.png" alt="Türkçe">
+      <% end %>
+      <%= link_to url_for(locale: :en), class: "text-decoration-none" do %>
+        <img src="https://flagcdn.com/24x18/gb.png" alt="English">
+      <% end %>
+    </div>
   </div>
 </footer>

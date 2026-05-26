@@ -19,8 +19,8 @@
           <hr class="border-light opacity-25">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
-              <%= link_to "Düzenle", edit_post_path(post), class: "text-info text-decoration-none small fw-bold" %>
-              <%= button_to "Bu Yazıyı Sil", post_path(post),
+              <%= link_to t("actions.edit"), edit_post_path(post), class: "text-info text-decoration-none small fw-bold" %>
+              <%= button_to t("actions.destroy"), post_path(post),
                 method: :delete,
                 data: { confirm: "Emin misin?" },
                 class: "btn btn-light-pink btn-sm rounded-pill px-4" %>

@@ -9,33 +9,27 @@
       </ul>
     </div>
   <% end %>
-
   <div class="mb-3">
     <%= form.label :title, "Başlık", class: "form-label text-neon-purple fw-bold" %>
     <%= form.text_field :title, class: "form-control bg-dark text-white border-purple", placeholder: "Yazı başlığını girin..." %>
   </div>
-
   <div class="mb-3">
     <%= form.label :article, "İçerik", class: "form-label text-neon-purple fw-bold" %>
-    <%= form.textarea :article, class: "form-control bg-dark text-white border-purple", rows: 6, placeholder: "Yazı içeriğini girin..." %>
+    <%= form.rich_textarea :article, class: "form-control bg-dark text-white border-purple" %>
   </div>
-
   <div class="mb-3">
     <%= form.label :status, "Durum", class: "form-label text-neon-purple fw-bold" %>
     <%= form.number_field :status, class: "form-control bg-dark text-white border-purple" %>
   </div>
-
   <div class="mb-3">
     <%= form.label :image, "Resim", class: "form-label text-neon-purple fw-bold" %>
     <%= form.file_field :image, class: "form-control bg-dark text-white border-purple" %>
   </div>
-
   <div class="mb-4">
     <%= form.label :category_ids, "Kategoriler", class: "form-label text-neon-purple fw-bold" %>
     <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "form-select bg-dark text-white border-purple" } %>
     <small class="text-muted">Birden fazla seçmek için Ctrl tuşuna basılı tutun</small>
   </div>
-
   <div class="d-flex gap-3">
     <%= form.submit class: "btn btn-neon-purple px-4 py-2 rounded-pill" %>
     <%= link_to "Geri Dön", posts_path, class: "btn btn-outline-light px-4 py-2 rounded-pill" %>

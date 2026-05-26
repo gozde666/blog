@@ -1,11 +1,7 @@
-<% content_for :title, "New post" %>
-
-<h1>New post</h1>
-
+<% content_for :title, t(".title") %>
+<h1><%= t(".title") %></h1>
 <%= render "form", post: @post %>
-
 <br>
-
 <div>
-  <%= link_to "Back to posts", posts_path %>
+  <%= link_to t("actions.back"), posts_path %>
 </div>

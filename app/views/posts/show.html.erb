@@ -17,8 +17,8 @@
     <p><%= @post.article %></p>
 
     <div class="d-flex gap-3 mt-4">
-      <%= link_to "Düzenle", edit_post_path(@post), class: "btn btn-neon-purple rounded-pill px-4" %>
-      <%= link_to "Geri Dön", posts_path, class: "btn btn-outline-light rounded-pill px-4" %>
+      <%= link_to t("actions.edit"), edit_post_path(@post), class: "btn btn-neon-purple rounded-pill px-4" %>
+      <%= link_to t("actions.back"), posts_path, class: "btn btn-outline-light rounded-pill px-4" %>
       <%= button_to "Sil", post_path(@post), method: :delete, data: { confirm: "Emin misin?" }, class: "btn btn-danger rounded-pill px-4" %>
     </div>
   </div>

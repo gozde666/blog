@@ -1,4 +1,8 @@
 class Post < ApplicationRecord
+  has_rich_text :article
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   has_and_belongs_to_many :categories
   has_one_attached :image
 

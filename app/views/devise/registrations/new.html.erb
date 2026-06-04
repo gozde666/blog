@@ -1,0 +1,61 @@
+<div class="row justify-content-center align-items-center my-5 flex-grow-1">
+  <div class="col-12 col-md-8 col-lg-5">
+    <div class="card purple-card p-4 text-white shadow-lg">
+      <h2 class="text-center text-neon-purple fw-bold mb-4">
+        <i class="bi bi-person-plus-fill me-2"></i>Kayıt Ol
+      </h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <%= f.label :firstname, "Ad", class: "form-label fw-semibold text-white-50" %>
+            <%= f.text_field :firstname, autofocus: true, class: "form-control bg-dark text-white border-secondary", placeholder: "Gözde" %>
+          </div>
+          <div class="col-6">
+            <%= f.label :lastname, "Soyad", class: "form-label fw-semibold text-white-50" %>
+            <%= f.text_field :lastname, class: "form-control bg-dark text-white border-secondary", placeholder: "Yılmaz" %>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :username, "Kullanıcı Adı", class: "form-label fw-semibold text-white-50" %>
+          <%= f.text_field :username, class: "form-control bg-dark text-white border-secondary", placeholder: "gozde666" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :gender, "Cinsiyet", class: "form-label fw-semibold text-white-50" %>
+          <%= f.select :gender, [["Belirtmek İstemiyorum", "secret"], ["Erkek", "male"], ["Kadın", "female"]], {}, class: "form-select bg-dark text-white border-secondary" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :email, "E-posta Adresi", class: "form-label fw-semibold text-white-50" %>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control bg-dark text-white border-secondary", placeholder: "ornek@email.com" %>
+        </div>
+
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <%= f.label :password, class: "form-label fw-semibold text-white-50" do %>
+              Şifre <%= " (#{@minimum_password_length} karakter min)" if @minimum_password_length %>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control bg-dark text-white border-secondary", placeholder: "••••••••" %>
+          </div>
+          <div class="col-6">
+            <%= f.label :password_confirmation, "Şifre Tekrar", class: "form-label fw-semibold text-white-50" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control bg-dark text-white border-secondary", placeholder: "••••••••" %>
+          </div>
+        </div>
+
+        <div class="d-grid mb-3">
+          <%= f.submit "Kayıt Ol", class: "btn btn-neon-purple fw-bold py-2" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-3 border-top border-secondary pt-3 small">
+        <span class="text-white-50">Zaten üye misin?</span> 
+        <%= link_to "Giriş Yap", new_session_path(resource_name), class: "text-neon-purple fw-bold text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+</div>

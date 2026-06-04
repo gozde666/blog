@@ -64,3 +64,5 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'friendly_id', '~> 5.7'
+
+gem "devise", "~> 5.0"

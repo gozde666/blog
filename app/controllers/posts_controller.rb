@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   def index
     @posts = Post.all
@@ -16,9 +17,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
+
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, notice: "Post başarılı bir şekilde oluşturuldu."
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,6 +46,13 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :article, :status, :image, category_ids: [])
+  params.require(:post).permit(
+    :title,
+    :article,
+    :status,
+    :image,
+    :user_id,
+    category_ids: []
+  )
   end
 end

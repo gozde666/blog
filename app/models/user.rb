@@ -32,4 +32,6 @@ class User < ApplicationRecord
     "#{firstname} #{lastname}"
   end
 
+  has_many :posts, dependent: :destroy
+  
 end

@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="card purple-card p-4 text-white text-center">
+    <% if @profile&.image&.attached? %>
+      <%= image_tag @profile.image, class: "rounded-circle mb-3 d-block mx-auto", style: "width: 150px; height: 150px; object-fit: cover;" %>
+    <% else %>
+      <i class="bi bi-person-circle" style="font-size: 100px;"></i>
+    <% end %>
+    <h2 class="fw-bold mt-2"><%= @user.fullname %></h2>
+    <% if @profile %>
+      <p class="mt-3"><%= @profile.bio %></p>
+      <p>Sosyal hesaplarımdan bana ulaşabilirsiniz.</p>
+      <div class="d-flex justify-content-center gap-3 mt-2">
+        <% if @profile.github.present? %>
+          <%= link_to @profile.github, target: "_blank" do %>
+            <i class="bi bi-github fs-3 text-white"></i>
+          <% end %>
+        <% end %>
+        <% if @profile.linkedin.present? %>
+          <%= link_to @profile.linkedin, target: "_blank" do %>
+            <i class="bi bi-linkedin fs-3 text-white"></i>
+          <% end %>
+        <% end %>
+        <% if @profile.twitter.present? %>
+          <%= link_to @profile.twitter, target: "_blank" do %>
+            <i class="bi bi-twitter-x fs-3 text-white"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="mt-4">
+        <%= link_to "Profili Düzenle", edit_user_profile_path(@user), class: "btn btn-neon-purple rounded-pill px-4" %>
+      </div>
+    <% else %>
+      <p class="mt-3">Henüz profil oluşturulmamış.</p>
+      <%= link_to "Profil Oluştur", new_user_profile_path(@user), class: "btn btn-neon-purple rounded-pill px-4 mt-2" %>
+    <% end %>
+  </div>
+</div>

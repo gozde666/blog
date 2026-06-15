@@ -1,4 +1,4 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: [@user, post]) do |form| %>
   <% if post.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= pluralize(post.errors.count, "error") %> hata oluştu:</h2>
@@ -32,6 +32,6 @@
   </div>
   <div class="d-flex gap-3">
     <%= form.submit class: "btn btn-neon-purple px-4 py-2 rounded-pill" %>
-    <%= link_to "Geri Dön", posts_path, class: "btn btn-outline-light px-4 py-2 rounded-pill" %>
+    <%= link_to "Geri Dön", user_posts_path(@user), class: "btn btn-outline-light px-4 py-2 rounded-pill" %>
   </div>
 <% end %>

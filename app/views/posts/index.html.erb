@@ -1,14 +1,14 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-5">
     <h1 class="fw-bold text-neon-purple display-4">Blog Yazılarım</h1>
-    <%= link_to "+ Yeni Yazı Ekle", new_post_path, class: "btn btn-neon-purple px-4 py-2 rounded-pill shadow" %>
+    <%= link_to "+ Yeni Yazı Ekle", new_user_post_path(current_user), class: "btn btn-neon-purple px-4 py-2 rounded-pill shadow" %>
   </div>
   <div class="posts-container">
     <% @posts.each do |post| %>
       <div class="card purple-card mb-4">
         <div class="card-body p-4 text-white">
           <h2 class="card-title">
-            <%= link_to post.title, post_path(post), class: "text-white text-decoration-none fw-bold" %>
+            <%= link_to post.title, user_post_path(post.user, post), class: "text-white text-decoration-none fw-bold" %>
           </h2>
           <p class="opacity-75"><%= post.article %></p>
           <div class="mb-2">
@@ -19,8 +19,8 @@
           <hr class="border-light opacity-25">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
-              <%= link_to t("actions.edit"), edit_post_path(post), class: "text-info text-decoration-none small fw-bold" %>
-              <%= button_to t("actions.destroy"), post_path(post),
+              <%= link_to t("actions.edit"), edit_user_post_path(post.user, post), class: "text-info text-decoration-none small fw-bold" %>
+              <%= button_to t("actions.destroy"), user_post_path(post.user, post),
                 method: :delete,
                 data: { confirm: "Emin misin?" },
                 class: "btn btn-light-pink btn-sm rounded-pill px-4" %>

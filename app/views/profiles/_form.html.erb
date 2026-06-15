@@ -1,0 +1,35 @@
+<%= form_with(model: profile, url: profile.new_record? ? user_profile_path(@user) : user_profile_path(@user), method: profile.new_record? ? :post : :patch) do |form| %>
+  <% if profile.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% profile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :bio, "Hakkımda", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.text_area :bio, class: "form-control bg-dark text-white border-purple", rows: 5 %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :image, "Profil Resmi (URL)", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.file_field :image, class: "form-control bg-dark text-white border-purple" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :github, "GitHub Linki", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.text_field :github, class: "form-control bg-dark text-white border-purple" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :linkedin, "LinkedIn Linki", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.text_field :linkedin, class: "form-control bg-dark text-white border-purple" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :twitter, "X (Twitter) Linki", class: "form-label text-neon-purple fw-bold" %>
+    <%= form.text_field :twitter, class: "form-control bg-dark text-white border-purple" %>
+  </div>
+  <div class="d-flex gap-3 mt-4">
+    <%= form.submit class: "btn btn-neon-purple px-4 py-2 rounded-pill" %>
+    <%= link_to "Geri Dön", user_profile_path(@user), class: "btn btn-outline-light px-4 py-2 rounded-pill" %>
+  </div>
+<% end %>

@@ -1,8 +1,6 @@
-<% content_for :title, t(".title") %>
-<h1><%= t(".title") %></h1>
-<%= render "form", post: @post %>
-<br>
-<div>
-  <%= link_to t("actions.show"), @post %> |
-  <%= link_to t("actions.back"), posts_path %>
+<div class="container mt-5">
+  <div class="card purple-card p-4 text-white">
+    <h1 class="fw-bold text-neon-purple mb-4">Postu Düzenle</h1>
+    <%= render "form", post: @post %>
+  </div>
 </div>

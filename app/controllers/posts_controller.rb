@@ -1,58 +1,60 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  before_action :set_user
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = @user.posts
   end
 
   def show
   end
 
   def new
-    @post = Post.new
-  end
-
-  def edit
+    @post = @user.posts.new
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-
+    @post = @user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notice: "Post başarılı bir şekilde oluşturuldu."
+      redirect_to user_posts_path(@user), notice: "Post başarıyla oluşturuldu."
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def edit
+  end
+
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to user_post_path(@user, @post), notice: "Post güncellendi."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @post.destroy!
-    redirect_to posts_path, status: :see_other
+    @post.destroy
+    redirect_to user_posts_path(@user), notice: "Post silindi."
   end
 
   private
 
+  def set_user
+    @user = User.friendly.find(params[:user_id])
+  end
+
   def set_post
-    @post = Post.friendly.find(params[:id])
+    @post = @user.posts.friendly.find(params[:id])
+  end
+
+  def authorize_user!
+    redirect_to root_path, alert: "Yetkiniz yok." unless @user == current_user
   end
 
   def post_params
-  params.require(:post).permit(
-    :title,
-    :article,
-    :status,
-    :image,
-    :user_id,
-    category_ids: []
-  )
+    params.require(:post).permit(:title, :article, :status, :image, category_ids: [])
   end
 end

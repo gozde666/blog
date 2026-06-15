@@ -1,40 +1,10 @@
-<div class="container mt-5">
-  <div class="d-flex justify-content-between align-items-center mb-5">
-    <h1 class="fw-bold text-neon-purple display-4">Blog Yazılarım</h1>
-    <%= link_to "+ Yeni Yazı Ekle", "/new", class: "btn btn-neon-purple px-4 py-2 rounded-pill shadow" %>
-  </div>
-
-  <div class="posts-container">
-    <% @posts.each do |post| %>
-      <div class="card purple-card mb-4">
-        <div class="card-body p-4 text-white">
-          
-          <h2 class="card-title">
-            <a href="/post/<%= post.id %>" class="text-white text-decoration-none fw-bold">
-              <%= post.title %>
-            </a>
-          </h2>
-          
-          <p class="opacity-75"><%= post.body %></p>
-          <hr class="border-light opacity-25">
-
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0 small opacity-75">
-              <strong>Yazar:</strong> <span class="text-info"><%= post.author %></span>
-            </p>
-            
-            <div class="d-flex align-items-center gap-3">
-              <a href="/edit/<%= post.id %>" class="text-info text-decoration-none small fw-bold">Düzenle</a>
-
-              <%= button_to "Bu Yazıyı Sil", "/delete/#{post.id}",
-                method: :delete,
-                data: { confirm: "Emin misin?" },
-                class: "btn btn-light-pink btn-sm rounded-pill px-4" %>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    <% end %>
+<div class="position-relative">
+  <div class="text-center py-5" style="background: linear-gradient(135deg, #1a0033 0%, #0d0019 100%); min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+    <div>
+      <h1 class="display-2 fw-bold text-neon-purple mb-3">Blog'a Hoş Geldiniz</h1>
+      <p class="lead text-white opacity-75 mb-5">Düşüncelerini paylaş, yazılarını keşfet.</p>
+      <% path = user_signed_in? ? new_user_post_path(current_user) : new_user_session_path %>
+      <%= link_to "Yazmaya Başla", path, class: "btn btn-neon-purple btn-lg rounded-pill px-5 py-3 shadow" %>
+    </div>
   </div>
 </div>
